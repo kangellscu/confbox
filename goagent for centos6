@@ -1,0 +1,43 @@
+###Tips:
+You might encounter a error descript as below:
+    TypeError(¡°__init__() got an unexpected keyword argument ¡®buffering¡¯
+
+This is because python version is too low (version higher than 2.7 is better). But if
+you insist of using python version 2.6.6 (default python version in centos6.5), please 
+just modify one or two lines in local/proxy.py, as below:
+    - response = httplib.HTTPResponse(sock, buffering=False)
+    + response = httplib.HTTPResponse(sock)
+
+
+### Dependence install
+
+1. yum groupinstall "Development Tools"
+
+2. yum install python-devel libevent libevent-devel
+
+3. greenlet
+    unzip greenlet-xxx.zip
+    cd greenlet-xxx
+    python setup.py install
+
+4. gevent
+    tar vxzf gevent-xxx.tar.gz
+    cd gevent-xxx
+    python setup.py install
+
+5. yum install pyOpenSSL
+
+
+### Configuration
+
+1. upload
+    cd /path/to/goagent/server
+    python uploader.zip
+    
+
+    when uploading is going, Please set APPID, Email and google specified application password (note: not login pa
+ssword) as prompt.
+
+
+###Run
+sudo -s python /path/to/goagent/local/proxy.py
